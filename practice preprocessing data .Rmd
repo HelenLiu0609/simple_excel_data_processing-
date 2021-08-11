@@ -8,20 +8,56 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
-```{r load example data}
+```{r daily self care}
+library("praise")
+praise()
+```
 
 
-```ˆˆ
-```{r handeling missing data}
-#Drop rows containing NA’s in ... columns.
+```{r load data and view using "glimpse"}
+my_data <- read.csv("~/Desktop/Group coding sheet_updated_08.05.csv")
+library(dplyr)
+view(my_data)
+glimpse(my_data)
+```
+```{r used package}
+#Tidy Data with "tidyr"
+library(tidyr)
+library(tidyverse)
+# structuring sequences of data operations with "magrittr" %>% 
+library(magrittr)
+```
+```{r pick roles}
+#pick roles 2,3,4,5 
+need_data <- my_data[,c(2,3,4,5)]
+view(need_data)
+# or other ways is c("name","",....)
+#
+# drop example lines 1,2,3
+need_data_drop <- need_data %>% slice(-c(1, 2, 3))
+view(need_data_drop)
+```
+```{r reshape data}
+# gather and spread function：reorganize the values of a table into a new layout
+gather(need_data_drop, `1999`, `2000`, key = "year", value = "cases")
+spread(table2, type, count)
+```
+```{r handling missing data}
+#Drop rows containing NA’s in x2 columns.
 drop_na(x, x2)
-#Fill in NA’s in ... columns with most recent non-NA values.
-fill(x, ..., .direction = c("down", "up"))
 #Replace NA by column 
 replace_na(x, list(x2 = 2))
 ```
-```{r split cells}
-Split Cells
+```{r split cells/seperate roles}
+#separate first author and last author
+new_data <- separate(need_data_drop, Author, sep = ";", into = c("first author", "last author"))
+# put together two roles 
+unite(new_data, "first author", Year, col = "article", sep = ",")
+```
+```
+```{r}
+
+```
 
 ```
 

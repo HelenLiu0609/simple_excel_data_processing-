@@ -243,34 +243,100 @@ summary {
 <p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Cmd+Shift+Enter</em>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbmBgYMuGy4ZcbmBgYCJ9 -->
-<pre class="r"><code>
-```ˆˆ</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcInByYWlzZVwiKVxucHJhaXNlKClcbmBgYCJ9 -->
+<pre class="r"><code>library(&quot;praise&quot;)
+praise()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiWW91IGFyZSBhd2Vzb21lIVwiXG4ifQ== -->
+<pre><code>[1] &quot;You are awesome!&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfZGF0YSA8LSByZWFkLmNzdihcIn4vRGVza3RvcC9Hcm91cCBjb2Rpbmcgc2hlZXRfdXBkYXRlZF8wOC4wNS5jc3ZcIilcbmxpYnJhcnkoZHBseXIpXG52aWV3KG15X2RhdGEpXG5nbGltcHNlKG15X2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>my_data &lt;- read.csv(&quot;~/Desktop/Group coding sheet_updated_08.05.csv&quot;)
+library(dplyr)
+view(my_data)
+glimpse(my_data)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0Ryb3Agcm93cyBjb250YWluaW5nIE5B4oCZcyBpbiAuLi4gY29sdW1ucy5cbmRyb3BfbmEoeCwgeDIpXG4jRmlsbCBpbiBOQeKAmXMgaW4gLi4uIGNvbHVtbnMgd2l0aCBtb3N0IHJlY2VudCBub24tTkEgdmFsdWVzLlxuZmlsbCh4LCAuLi4sIC5kaXJlY3Rpb24gPSBjKFwiZG93blwiLCBcInVwXCIpKVxuI1JlcGxhY2UgTkEgYnkgY29sdW1uIFxucmVwbGFjZV9uYSh4LCBsaXN0KHgyID0gMikpXG5gYGAifQ== -->
-<pre class="r"><code>#Drop rows containing NA’s in ... columns.
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI1RpZHkgRGF0YSB3aXRoIFwidGlkeXJcIlxubGlicmFyeSh0aWR5cilcbmxpYnJhcnkodGlkeXZlcnNlKVxuIyBzdHJ1Y3R1cmluZyBzZXF1ZW5jZXMgb2YgZGF0YSBvcGVyYXRpb25zIHdpdGggXCJtYWdyaXR0clwiICU+JSBcbmxpYnJhcnkobWFncml0dHIpXG5gYGAifQ== -->
+<pre class="r"><code>#Tidy Data with &quot;tidyr&quot;
+library(tidyr)
+library(tidyverse)
+# structuring sequences of data operations with &quot;magrittr&quot; %&gt;% 
+library(magrittr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI3BpY2sgcm9sZXMgdXNpbmdcbm5lZWRfZGF0YSA8LSBteV9kYXRhWyxjKDIsMyw0LDUpXVxudmlldyhuZWVkX2RhdGEpXG4jIGRyb3AgZXhhbXBsZSBsaW5lIDEsMiwzXG5uZWVkX2RhdGFfZHJvcCA8LSBuZWVkX2RhdGEgJT4lIHNsaWNlKC1jKDEsIDIsIDMpKVxudmlldyhuZWVkX2RhdGFfZHJvcClcbmBgYCJ9 -->
+<pre class="r"><code>#pick roles using
+need_data &lt;- my_data[,c(2,3,4,5)]
+view(need_data)
+# drop example line 1,2,3
+need_data_drop &lt;- need_data %&gt;% slice(-c(1, 2, 3))
+view(need_data_drop)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnYXRoZXIgYW5kIHNwcmVhZCBmdW5jdGlvbu+8mnJlb3JnYW5pemUgdGhlIHZhbHVlcyBvZiBhIHRhYmxlIGludG8gYSBuZXcgbGF5b3V0XG5nYXRoZXIobmVlZF9kYXRhX2Ryb3AsIGAxOTk5YCwgYDIwMDBgLCBrZXkgPSBcInllYXJcIiwgdmFsdWUgPSBcImNhc2VzXCIpXG5zcHJlYWQodGFibGUyLCB0eXBlLCBjb3VudClcbmBgYCJ9 -->
+<pre class="r"><code># gather and spread function：reorganize the values of a table into a new layout
+gather(need_data_drop, `1999`, `2000`, key = &quot;year&quot;, value = &quot;cases&quot;)
+spread(table2, type, count)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0Ryb3Agcm93cyBjb250YWluaW5nIE5B4oCZcyBpbiB4MiBjb2x1bW5zLlxuZHJvcF9uYSh4LCB4MilcbiNSZXBsYWNlIE5BIGJ5IGNvbHVtbiBcbnJlcGxhY2VfbmEoeCwgbGlzdCh4MiA9IDIpKVxuYGBgIn0= -->
+<pre class="r"><code>#Drop rows containing NA’s in x2 columns.
 drop_na(x, x2)
-#Fill in NA’s in ... columns with most recent non-NA values.
-fill(x, ..., .direction = c(&quot;down&quot;, &quot;up&quot;))
 #Replace NA by column 
 replace_na(x, list(x2 = 2))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3BsaXQgQ2VsbHNcblxuYGBgIn0= -->
-<pre class="r"><code>Split Cells
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI3NlcGFyYXRlIGZpcnN0IGF1dGhvciBhbmQgbGFzdCBhdXRob3Jcbm5ld19kYXRhIDwtIHNlcGFyYXRlKG5lZWRfZGF0YV9kcm9wLCBBdXRob3IsIHNlcCA9IFwiO1wiLCBpbnRvID0gYyhcImZpcnN0IGF1dGhvclwiLCBcImxhc3QgYXV0aG9yXCIpKVxuYGBgIn0= -->
+<pre class="r"><code>#separate first author and last author
+new_data &lt;- separate(need_data_drop, Author, sep = &quot;;&quot;, into = c(&quot;first author&quot;, &quot;last author&quot;))</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogRXhwZWN0ZWQgMiBwaWVjZXMuIEFkZGl0aW9uYWwgcGllY2VzIGRpc2NhcmRlZCBpbiAxIHJvd3MgWzg4XS5cbldhcm5pbmc6IEV4cGVjdGVkIDIgcGllY2VzLiBNaXNzaW5nIHBpZWNlcyBmaWxsZWQgd2l0aCBgTkFgIGluIDEzIHJvd3MgWzE4LCAyNywgMzEsIDM0LCAzNSwgMzcsIDQwLCA0NywgNTUsIDY4LCAxMDMsIDEwNSwgMTI0XS5cbiJ9 -->
+<pre><code>Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [88].
+Warning: Expected 2 pieces. Missing pieces filled with `NA` in 13 rows [18, 27, 31, 34, 35, 37, 40, 47, 55, 68, 103, 105, 124].</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwdXQgdG9nZXRoZXIgdHdvIHJvbGVzIFxudW5pdGUobmV3X2RhdGEsIFwiZmlyc3QgYXV0aG9yXCIsIFllYXIsIGNvbCA9IFwiYXJ0aWNsZVwiLCBzZXAgPSBcIixcIilcbmBgYCJ9 -->
+<pre class="r"><code># put together two roles 
+unite(new_data, &quot;first author&quot;, Year, col = &quot;article&quot;, sep = &quot;,&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MTI1LCJuY29sIjo0LCJzdW1tYXJ5Ijp7IkRlc2NyaXB0aW9uIjpbImRmWyw0XSBbMTI1IMOXIDRdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQSsyWlcyOGJSUlRIVFJNbnRuTnB1RXM4elFlZ29WN2ZIOXVrY2Rva3BlQkEycjZnOFhyaUhieWVzV1ozRXh5cEVxaXFRQ290bEFxcFFpQkFRZ0tFRUVJZ1VLdStSWHlUeGpSZm9qRDJlczd1Ykx4Tmk0U1FVQzJ0OXN6ZlorWTNaeTVueHZMcmkrZHptZk9aUkNJeGxoaVh6MWhTbW9ua0crdEx4OHFKeFBnUldYaEtmcEh1djkrUlRzOUtZMXcrYy9LNXBMN0lLc05RUms0WmVXVVVsRkZVUmtrWlpXVlVoc2FSN0hHd3NtQVpZT1hBeW9OVkFLc0lWZ21zTWxqQU1JQmhBTU1BaGdFTUF4Z0dNQXhnR01Bd2dHRUFJd2VNSERCeXdNZ0JJd2VNSERCeXdNZ0JJd2VNSEREeXdNZ0RJdytNUEREeXdNZ0RJdytNUEREeXdNZ0Rvd0NNQWpBS3dDZ0Fvd0NNQWpBS3dDZ0Fvd0NNQWpDS3dDZ0Nvd2lNSWpDS3dDZ0Nvd2lNSWpDS3dDZ0Nvd1NNRWpCS3dDZ0Jvd1NNRWpCS3dDZ0Jvd1NNRWpES3dDZ0Rvd3lNTWpES3dDZ0Rvd3lNTWpES3dDZ0Rvd0tNQ2pBcXdLZ0Fvd0tNQ2pBcXdLZ0Fvd0tNaW1LTVpZOGZEOHhzWUJxQm1Rdk1mR0FXQXJNWW1LWEFMQWRtUU1zR3RHeEF5d2EwYkVETEJyUnNRTXNHdEd4QXl3YTBiRUF6QXBvUjBJeUFaZ1EwSTZESkRLQ252c1NUOTVQM2svZi8rSzN2OTh4SjdtTDJzbkVjMHNyVEowV1hzeTQ2aDd1TXlDOGdzMHd2WUs5cGtXNVl5eXhZaERYNzFWVXFtbDJ3S0JiRXRuSFliM2FCTThmRmRadm92aUgxRU4vcFJXeTNzY08xK292RUlYWEJ6Vlk0Z013cEZxZElSc0p2YlFuYjlkM3ZXWmliWGhxR1VvNEk0REcxSkNock9uMGZsVUtubHp6Q1hETFFWTHFlcWI1TmhPc1FyZldqVlc1N2RXcTJxQk5tNkhLY3Q4cit6eTBUSnJvdGROSnI4VzJuUmNOVkpwYzliUlNYdlhiSEVxUTdhS0R3VVBYb2N0ZGpiMU8wUXR2YWhKL0dKdC9aMFNZeWZYb0w3NFNEQlVGRk5IMEdNM09ucTAvQUdZcjFzUTBVTlptcE0zUXc0VG53NEl4b1kvWENHYytXdGRBaVFVdUNVQmM3V24yLzk4SGlXTEhKRmhIYjJBNjNNYlBDN1MzT2hhdk42eW81aVlVSWovVGtxamE0YzZ1bjBRWFo0UjNMNCtIbVVxdlVDNCtHS3F0bXB0YXdLVENKa1dBdzFqQVYyaDZZR2lqejRhYW4xM0JyR3pQc3grZ3Y0K2ZYc0hCM2YyUms1OWk1M2U4RjJkSGJNRTl2Y1JHV1hsb2pRblRsQ0dLYm9KR2JiMnFOQzl5Z2VvY1BTT216bk5oaDRZVlhCMXVlWWRtcUVMSjFiVFduejBVMlV2bzE2aWNkMk4ydkU4KzF5SEFLL09CbWFxYTErODJtTDFZZVdTeU9FZ3VqeEZFZ3lCQ0hna1o3cXRtYWtpTHZiSWFEVHRYOE1WTXhwMnNXWmVGQm5LNVJVdWQyUTIrbmcwVkxTeStabWt2OGlvR1R5MjFYVzJVek5WZGcwOEpNNzRGblJjbzBuQWRVdVJRcDV3NHBSK3MvYmpuS082d2NyVjg4cEgvNVIrK1BOcTVIMTdGSklkTkNOMkxrcVhYaGNUK25QVVJLYitBR0dTbVVBOEd2VW93VFh0ekFib3N5aDdOako1d09aZGpXTnVQTUJyVmxvbXhyeVRPendlM05UVzB4Yi9BLzdqQ0t0WU14TEk3MGhBYm5aRDVzY2M5cDRhNTJRa1IwNk5YajZxa0xWRXNSNlF1ZW5qUFNGeTNNUndxRlFPQmV4SU5yK1RsMTBmTDhvUHhJWi9jK3VOVzdkYjEzNVZ0LzNRelYzaGZYZTE5OHQzZnRwdWI3NS9XcmUrOS9lTy9PamZCWXpkNi8vUFgremQvdVg3OGR6anRUKzVkdjdQMStMU3pON24veVplK25LM3UzZjFHTnppV0NlMWtTYldEUlVNc0lyWmxWNHJxMGlabWFZM1NXVUJ2NVp3a2FpaE5vWGQ0Nm1sQ3JKcThyZEFzN1VDdU5WaGl2MjlTMDRvUUpkRTVnMTFYRGc2clkzc1NNcTFNUjFUcUVtVVN0S1FUWGlhRXlqdVNXVWszNW5SdVd4bVJmd1duVjQwRFlrUGNuVCtBUlRjcnUvU1Uvd05iYW13NFBRSnpMZ28wOUI2M2lkaHVONkdDY25VSkx0anp5ekJiMFlIaHBSSXZlN3MrNExxOGVGSS9Vd20zcHZaOUNCOFlxaWFwMmw0VVpJZi80Y1VpanMvTDZZdkhOVGVodXpTS05CbUVSeDFsVVBmRXFPdCsvWjhrYzBSd1I2QmhhRFdLdVlVdGdTbUxLRStnaWJtSnhJS29EUzB3T25uOGpob29yWHR1dktKOW5VSFgzTHV1ZjlOR0ZkM0F0SFZUNm5iSjVtMGNqbFF1S2VtQlhzVnBjTTJqQndpMkJ0K1F0eWFLd1NQeGIvT2hpZEQwKzNQdWZGZU5uV29VZ3I3THc3WmE4OFY3a3hIRmgvbGVFWEd3dDdzUzZoT2Y0d0E2ZlJDZnFRaDRPc2ZneFZQVWVZMUwrV3lVODlmOG1KWndkVGxuQ2tXZHZURG1KMW5tak1hcVFRbS9LWDNSRWRHUEtXdkpFOGpDVG16YTY5NnR5VDdJbWlXN0VDYlRNcmUxdTNKd2ZFT0pTMzZNTXhnUTYxV1N5QjJxMUxIa1F6enFYQ0lwaXl1Tm9IZEpFUHo0T1NTazVpSGFZSTFKby83T3J2Vi9mUThOeUJ1My9jS3QzKzliOWo2OE5sVW0wZC9jcmVVeERzZmY1ejcxUFA0cWs2eFM2LytIbGUzZS9sTzFvZi9za0dXNlQvaTZjNi9kSkpjc1R3cVdtVGQ1aVhyc093U1VYZUFNS2s5aDNVYm5QeG82THNQelp3a1dFa0JaOGUxNVJadVJ6NU4zRTRITXAyaFZUTnFLNm9zUk1BN3Q0ZmxQdVVTSkxEeUpWSm5uSHBmS1htMnkwLzlkVk1sTDVLUkVSWG5JNk5uV1JLWCtlT2E4NHBFUGs4VTZRNFBhZ2M1bUJwLytaR2RxWFF2YTRUei95MTdEVnBKbytlYzJnVEExRjBwWUhvSzFHVWdZL2lIMitJOU9kU2trWnFUcnpMbmV4OHN1WTNGYktJTXpFZzc4QnViaFRvcndiQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Article_number"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Coder"],"name":[2],"type":["chr"],"align":["left"]},{"label":["article"],"name":[3],"type":["chr"],"align":["left"]},{"label":["last author"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"","3":"Botan,2018","4":"Ward"},{"1":"2","2":"","3":"Bryony Payne,2020","4":"McGettigan"},{"1":"3","2":"","3":"Caughey,2020","4":"Neil Macrae"},{"1":"4","2":"","3":"Cheng,2019","4":"Tseng"},{"1":"5","2":"","3":"Chiarella,2020","4":"Srinivasan"},{"1":"6","2":"","3":"Constable,2019","4":"Knoblich"},{"1":"7","2":"","3":"Constable,2020","4":"Knoblich"},{"1":"8","2":"","3":"Constable,2019","4":"Pratt"},{"1":"9","2":"","3":"Dalmaso,2019","4":"Galfano"},{"1":"10","2":"","3":"Desebrock,2018","4":"Spence"},{"1":"11","2":"","3":"Enock,2018","4":"Humphreys"},{"1":"12","2":"","3":"Enock,2020","4":"Sui"},{"1":"13","2":"","3":"Falbén,2020","4":"Macrae"},{"1":"14","2":"","3":"Feng,2018","4":"Ma"},{"1":"15","2":"","3":"Feng,2020","4":"Luo"},{"1":"16","2":"","3":"Frings,2014","4":"Wentura"},{"1":"17","2":"","3":"Fuentes,2016","4":"Humphreys"},{"1":"18","2":"","3":"Gjertsen,2020","4":"NA"},{"1":"19","2":"","3":"Golubickis,2018","4":"Macrae"},{"1":"20","2":"","3":"Golubickis,2020","4":"Neil Macrae"},{"1":"21","2":"","3":"Golubickis,2017","4":"Macrae"},{"1":"22","2":"","3":"Henryk Bukowski,2020","4":"Claus Lamm"},{"1":"23","2":"","3":"Hu,2020","4":"Sui"},{"1":"24","2":"","3":"Humphreys,2015","4":"Sui"},{"1":"25","2":"","3":"Humphreys,2015","4":"Sui"},{"1":"26","2":"","3":"Hyunji Kim,2020","4":"Florack"},{"1":"27","2":"","3":"Iacozza,2020","4":"NA"},{"1":"28","2":"","3":"Ivaz,2016","4":"Duñabeitia"},{"1":"29","2":"","3":"Ivaz,2018","4":"Duñabeitia"},{"1":"30","2":"","3":"Janczyk,2018","4":"Sui"},{"1":"31","2":"","3":"Jiang,2018","4":"NA"},{"1":"32","2":"","3":"Jiang,2019","4":"Humphreys"},{"1":"33","2":"","3":"Jie,2013","4":"Glyn"},{"1":"34","2":"","3":"Jones,2018","4":"NA"},{"1":"35","2":"","3":"Julian De Freitas,2019","4":"NA"},{"1":"36","2":"","3":"Kim,2019","4":"Humphreys"},{"1":"37","2":"","3":"Kleverwal,2018","4":"NA"},{"1":"38","2":"","3":"Kolvoort,2020","4":"Northoff"},{"1":"39","2":"","3":"LeBarr,2017","4":"Shedden"},{"1":"40","2":"","3":"Li,2020","4":"NA"},{"1":"41","2":"","3":"LI Yangzhuo,2018","4":"GAO Xiangping"},{"1":"42","2":"","3":"Liu,2016","4":"Sui"},{"1":"43","2":"","3":"Liu,2017","4":"Li"},{"1":"44","2":"","3":"Macrae,2017","4":"Sahraie"},{"1":"45","2":"","3":"Macrae,2018","4":"Sahraie"},{"1":"46","2":"","3":"Maire,2020","4":"Zagar"},{"1":"47","2":"","3":"Maire.,2016","4":"NA"},{"1":"48","2":"","3":"Makwana,2019","4":"Srinivasan"},{"1":"49","2":"","3":"Martínez-Pérez,2020","4":"Fuentes"},{"1":"50","2":"","3":"McIvor,2020","4":"Kumar"},{"1":"51","2":"","3":"Merryn Dale Constable,2020","4":"Günther Knoblich"},{"1":"52","2":"","3":"Moradi,2017","4":"Humphreys"},{"1":"53","2":"","3":"Moradi,2017","4":"Humphreys"},{"1":"54","2":"","3":"Noel,2017","4":"Salomon"},{"1":"55","2":"","3":"Orellana Corrales,2020","4":"NA"},{"1":"56","2":"","3":"Peng,2020","4":"Liu"},{"1":"57","2":"","3":"Qian,2019","4":"Gao"},{"1":"58","2":"","3":"Reuther,2017","4":"Chakravarthi"},{"1":"59","2":"","3":"Schäfer,2019","4":"Frings"},{"1":"60","2":"","3":"Schäfer,2019","4":"Frings"},{"1":"61","2":"","3":"Schäfer,2016","4":"Wentura"},{"1":"62","2":"","3":"Schäfer,2015","4":"Frings"},{"1":"63","2":"","3":"Schäfer,2017","4":"Frings"},{"1":"64","2":"","3":"Schäfer,2020","4":"Frings"},{"1":"65","2":"","3":"Schäfer,2019","4":"Frings"},{"1":"66","2":"","3":"Schäfer,2020","4":"Frings"},{"1":"67","2":"","3":"Schäfer,2016","4":"Frings"},{"1":"68","2":"","3":"Schopf,2020","4":"NA"},{"1":"69","2":"","3":"Sel,2019","4":"Humphreys"},{"1":"70","2":"","3":"Shin,2017","4":"Kim"},{"1":"71","2":"","3":"Siebold,2016","4":"van Zoest"},{"1":"72","2":"","3":"Sparks,2016","4":"Kritikos"},{"1":"73","2":"","3":"Stein,2016","4":"van Zoest"},{"1":"74","2":"","3":"Stolte,2017","4":"Sui"},{"1":"75","2":"","3":"Strachan,2020","4":"Knoblich"},{"1":"76","2":"","3":"Suh,2020","4":"Abrams"},{"1":"77","2":"","3":"Sui,2015","4":"Humphreys"},{"1":"78","2":"","3":"Sui,2017","4":"Gu"},{"1":"79","2":"","3":"Sui,2013","4":"Humphreys"},{"1":"80","2":"","3":"Sui,2013","4":"Humphreys"},{"1":"81","2":"","3":"Sui,2015","4":"Humphreys"},{"1":"82","2":"","3":"Sui,2015","4":"Humphreys"},{"1":"83","2":"","3":"Sui,2015","4":"Humphreys"},{"1":"84","2":"","3":"Sui,2015","4":"Humphreys"},{"1":"85","2":"","3":"Sui,2017","4":"Humphreys"},{"1":"86","2":"","3":"Sui,2017","4":"Humphreys"},{"1":"87","2":"","3":"Sui,2017","4":"Humphreys"},{"1":"88","2":"","3":"Sui,2015","4":"Liu"},{"1":"89","2":"","3":"Sui,2016","4":"Humphreys"},{"1":"90","2":"","3":"Sui,2013","4":"Humphreys"},{"1":"91","2":"","3":"Sui,2014","4":"Humphreys"},{"1":"92","2":"","3":"Sui,2015","4":"Humphreys"},{"1":"93","2":"","3":"Sui,2015","4":"Humphreys"},{"1":"94","2":"","3":"Sun,2016","4":"Sui"},{"1":"95","2":"","3":"Tacikowski,2017","4":"Ehrsson"},{"1":"96","2":"","3":"Tacikowski,2017","4":"Ehrsson"},{"1":"97","2":"","3":"Truong,2017","4":"Todd"},{"1":"98","2":"","3":"Truong,2017","4":"Todd"},{"1":"99","2":"","3":"Wade,2017","4":"Vickery"},{"1":"100","2":"","3":"Wade,2018","4":"Vickery"},{"1":"101","2":"","3":"Wang,2016","4":"Sui"},{"1":"102","2":"","3":"Wang,2016","4":"Zhang"},{"1":"103","2":"","3":"Watkinson-Aspinall,2017","4":"NA"},{"1":"104","2":"","3":"Williams,2018","4":"Grainger"},{"1":"105","2":"","3":"Wolff,2019","4":"NA"},{"1":"106","2":"","3":"Woźniak,2020","4":"Hohwy"},{"1":"107","2":"","3":"Woźniak,2019","4":"Knoblich"},{"1":"108","2":"","3":"Woźniak,2018","4":"Knoblich"},{"1":"109","2":"","3":"Yankouskaya,2020","4":"Sui"},{"1":"110","2":"","3":"Yankouskaya,2017","4":"Sui"},{"1":"111","2":"","3":"Yankouskaya,2017","4":"Humphreys"},{"1":"112","2":"","3":"Yankouskaya,2017","4":"Humphreys"},{"1":"113","2":"","3":"Yin,2019","4":"Egner"},{"1":"114","2":"","3":"Yuan,2019","4":"Fu"},{"1":"115","2":"","3":"Zhao,2019","4":"Toichi"},{"1":"116","2":"","3":"Zhao,2015","4":"Toichi"},{"1":"117","2":"","3":"Zhou,2019","4":"Tan"},{"1":"118","2":"","3":"Zhou,2017","4":"Zhong"},{"1":"119","2":"","3":"Zhu,2018","4":"Zhan"},{"1":"120","2":"","3":"刘明慧,2014","4":"隋洁"},{"1":"121","2":"","3":"李杨卓,2018","4":"高湘萍"},{"1":"122","2":"","3":"王凌云,2019","4":"张明"},{"1":"123","2":"","3":"胡银莹,2015","4":"朱敏"},{"1":"124","2":"","3":"郑巍,2015","4":"NA"},{"1":"125","2":"","3":"钟毅平,2018","4":"范伟"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[125]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<pre><code>
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+</code></pre>
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Cmd+Option+I</em>.</p>
 <p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
 <p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAicHJhY3RpY2UgcHJlcHJvY2Vzc2luZyBkYXRhIgphdXRob3I6ICJIZWxlbkxpdSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgpgYGB7ciBsb2FkIGV4YW1wbGUgZGF0YX0KCgpgYGDLhsuGCmBgYHtyIGhhbmRlbGluZyBtaXNzaW5nIGRhdGF9CiNEcm9wIHJvd3MgY29udGFpbmluZyBOQeKAmXMgaW4gLi4uIGNvbHVtbnMuCmRyb3BfbmEoeCwgeDIpCiNGaWxsIGluIE5B4oCZcyBpbiAuLi4gY29sdW1ucyB3aXRoIG1vc3QgcmVjZW50IG5vbi1OQSB2YWx1ZXMuCmZpbGwoeCwgLi4uLCAuZGlyZWN0aW9uID0gYygiZG93biIsICJ1cCIpKQojUmVwbGFjZSBOQSBieSBjb2x1bW4gCnJlcGxhY2VfbmEoeCwgbGlzdCh4MiA9IDIpKQpgYGAKYGBge3Igc3BsaXQgY2VsbHN9ClNwbGl0IENlbGxzCgpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4gCgpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAicHJhY3RpY2UgcHJlcHJvY2Vzc2luZyBkYXRhIgphdXRob3I6ICJIZWxlbkxpdSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgpgYGB7ciBkYWlseSBzZWxmIGNhcmV9CmxpYnJhcnkoInByYWlzZSIpCnByYWlzZSgpCmBgYAoKCmBgYHtyIGxvYWQgZGF0YSBhbmQgdmlldyB1c2luZyAiZ2xpbXBzZSJ9Cm15X2RhdGEgPC0gcmVhZC5jc3YoIn4vRGVza3RvcC9Hcm91cCBjb2Rpbmcgc2hlZXRfdXBkYXRlZF8wOC4wNS5jc3YiKQpsaWJyYXJ5KGRwbHlyKQp2aWV3KG15X2RhdGEpCmdsaW1wc2UobXlfZGF0YSkKYGBgCmBgYHtyIHVzZWQgcGFja2FnZX0KI1RpZHkgRGF0YSB3aXRoICJ0aWR5ciIKbGlicmFyeSh0aWR5cikKbGlicmFyeSh0aWR5dmVyc2UpCiMgc3RydWN0dXJpbmcgc2VxdWVuY2VzIG9mIGRhdGEgb3BlcmF0aW9ucyB3aXRoICJtYWdyaXR0ciIgJT4lIApsaWJyYXJ5KG1hZ3JpdHRyKQpgYGAKYGBge3IgcGljayByb2xlc30KI3BpY2sgcm9sZXMgMiwzLDQsNSAKbmVlZF9kYXRhIDwtIG15X2RhdGFbLGMoMiwzLDQsNSldCnZpZXcobmVlZF9kYXRhKQojIG9yIG90aGVyIHdheXMgaXMgYygibmFtZSIsIiIsLi4uLikKIwojIGRyb3AgZXhhbXBsZSBsaW5lcyAxLDIsMwpuZWVkX2RhdGFfZHJvcCA8LSBuZWVkX2RhdGEgJT4lIHNsaWNlKC1jKDEsIDIsIDMpKQp2aWV3KG5lZWRfZGF0YV9kcm9wKQpgYGAKYGBge3IgcmVzaGFwZSBkYXRhfQojIGdhdGhlciBhbmQgc3ByZWFkIGZ1bmN0aW9u77yacmVvcmdhbml6ZSB0aGUgdmFsdWVzIG9mIGEgdGFibGUgaW50byBhIG5ldyBsYXlvdXQKZ2F0aGVyKG5lZWRfZGF0YV9kcm9wLCBgMTk5OWAsIGAyMDAwYCwga2V5ID0gInllYXIiLCB2YWx1ZSA9ICJjYXNlcyIpCnNwcmVhZCh0YWJsZTIsIHR5cGUsIGNvdW50KQpgYGAKYGBge3IgaGFuZGxpbmcgbWlzc2luZyBkYXRhfQojRHJvcCByb3dzIGNvbnRhaW5pbmcgTkHigJlzIGluIHgyIGNvbHVtbnMuCmRyb3BfbmEoeCwgeDIpCiNSZXBsYWNlIE5BIGJ5IGNvbHVtbiAKcmVwbGFjZV9uYSh4LCBsaXN0KHgyID0gMikpCmBgYApgYGB7ciBzcGxpdCBjZWxscy9zZXBlcmF0ZSByb2xlc30KI3NlcGFyYXRlIGZpcnN0IGF1dGhvciBhbmQgbGFzdCBhdXRob3IKbmV3X2RhdGEgPC0gc2VwYXJhdGUobmVlZF9kYXRhX2Ryb3AsIEF1dGhvciwgc2VwID0gIjsiLCBpbnRvID0gYygiZmlyc3QgYXV0aG9yIiwgImxhc3QgYXV0aG9yIikpCiMgcHV0IHRvZ2V0aGVyIHR3byByb2xlcyAKdW5pdGUobmV3X2RhdGEsICJmaXJzdCBhdXRob3IiLCBZZWFyLCBjb2wgPSAiYXJ0aWNsZSIsIHNlcCA9ICIsIikKYGBgCmBgYApgYGB7cn0KCmBgYAoKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ21kK09wdGlvbitJKi4KCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ21kK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuIAoKVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLgoK</div>
 
 
 
